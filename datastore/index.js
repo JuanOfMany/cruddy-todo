@@ -9,22 +9,16 @@ var items = {};
 
 
 exports.create = (text, callback) => {
-  //invoke fs.writeFile (file, text, callback)
   counter.getNextUniqueId(function(err, value) {
-    var filePath = 'datastore/data/' + value + '.txt';
+    var filePath = path.join(exports.dataDir, `${value}.txt`);
     fs.writeFile(filePath, text, function(error) {
       if (error) {
         console.log('THIS IS THE ERROR: ', err);
       } else {
-        console.log('IT WORKED');
-        callback (err, value);
+        callback (err, {id: value, text: text});
       }
     });
   });
-
-  // var id = counter.getNextUniqueId(); //Callback ---> error, uniqueID
-  // items[id] = text;
-  // callback(null, { id, text });
 };
 
 exports.readAll = (callback) => {
