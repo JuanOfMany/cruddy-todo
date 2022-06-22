@@ -8,7 +8,8 @@ var items = {};
 // Public API - Fix these CRUD functions ///////////////////////////////////////
 
 exports.create = (text, callback) => {
-  var id = counter.getNextUniqueId();
+  //invoke fs.writeFile (file, text, callback)
+  var id = counter.getNextUniqueId(); //Callback ---> error, uniqueID
   items[id] = text;
   callback(null, { id, text });
 };
